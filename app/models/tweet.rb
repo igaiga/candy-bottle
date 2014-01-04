@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Tweet
-  attr_reader :stream, :client
+  attr_reader :stream
   def initialize
     config = Pit.get("candy-bottle", require: {
                        twitter: {
@@ -26,6 +26,7 @@ class Tweet
     end
 
     @targets = Target.pluck(:word).to_a
+    @pusher = Pusher.new
   end
 
   def self.bring
@@ -35,7 +36,7 @@ class Tweet
       begin
         @tweet.bring
       rescue Exception => e
-        Rails.logger.error "Exception occur : #{e}"
+        Rails.logger.error "Exception occur in Tweet model: #{e}"
       end
     # end
   end
@@ -44,8 +45,11 @@ class Tweet
     @stream.user do |obj|
       case obj
       when Twitter::Tweet
+        # TODO : data 格納
         if @targets.any? { |word| obj.text.include?(word) }
-          p "#{obj.id} : #{obj.text}, #{obj.user.user_name}, #{obj.user.name}, #{obj.user.id}"
+          @pusher.push "@#{obj.user.user_name} (#{obj.user.name}) : #{obj.text} : #{obj.id}"
+          # TODO : twitter へリンク貼るとか、twitterアプリへ飛ばすとか、連携を考えたい
+          p "@#{obj.user.user_name} (#{obj.user.name}) : #{obj.text} : #{obj.id} : #{obj.user.id}"
         end
       end
     end
