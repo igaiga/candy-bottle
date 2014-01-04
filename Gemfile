@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'twitter'
 gem 'pit'
+gem 'im-kayac'
 
 group :development, :test do
   gem 'pry'
