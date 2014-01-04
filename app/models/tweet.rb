@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Tweet
   attr_reader :stream, :client
   def initialize
@@ -23,13 +24,28 @@ class Tweet
       twitter_config.access_token = config[:twitter][:access_token]
       twitter_config.access_token_secret = config[:twitter][:access_token_secret]
     end
+
+    @targets = Target.pluck(:word).to_a
+  end
+
+  def self.bring
+    @tweet  = Tweet.new
+    loop do
+      begin
+        @tweet.bring
+      rescue Exception => e
+        Rails.logger.error "Exception occur : #{e}"
+      end
+    end
   end
 
   def bring
     @stream.user do |obj|
       case obj
       when Twitter::Tweet
-        p "#{obj.id} : #{obj.text}, #{obj.user.name}, #{obj.user.id}"
+        if @targets.any? { |word| obj.text.include?(word) }
+          p "#{obj.id} : #{obj.text}, #{obj.user.user_name}, #{obj.user.name}, #{obj.user.id}"
+        end
       end
     end
   end
