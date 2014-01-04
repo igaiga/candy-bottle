@@ -15,6 +15,7 @@ gem 'pit'
 group :development, :test do
   gem 'pry'
   gem 'pry-doc'
+  gem 'pry-rails'
   gem 'awesome_print'
 end
 
