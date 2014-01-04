@@ -30,13 +30,14 @@ class Tweet
 
   def self.bring
     @tweet  = Tweet.new
-    loop do
+    # temporary comment out
+    # loop do
       begin
         @tweet.bring
       rescue Exception => e
         Rails.logger.error "Exception occur : #{e}"
       end
-    end
+    # end
   end
 
   def bring
