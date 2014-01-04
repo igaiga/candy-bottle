@@ -10,10 +10,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'twitter'
+gem 'pit'
 
-group :doc do
+group :development, :test do
   gem 'pry'
   gem 'pry-doc'
+  gem 'awesome_print'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
