@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# $ RAILS_ENV=production ber runner "TweetCollector.bring"
 class TweetCollector
   attr_reader :stream
   def initialize
@@ -31,14 +32,14 @@ class TweetCollector
 
   def self.bring
     @collector  = self.new
-    # temporary comment out
-    # loop do
+    loop do
       begin
         @collector.bring
       rescue Exception => e
+        # TODO ログに日時を出したい
         Rails.logger.error "Exception occur in TweetCollector: #{e}"
       end
-    # end
+    end
   end
 
   def bring
