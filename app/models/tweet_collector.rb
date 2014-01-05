@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# $ RAILS_ENV=production ber runner "TweetCollector.setup_pit" # first time only
 # $ RAILS_ENV=production ber runner "TweetCollector.bring"
 class TweetCollector
   attr_reader :stream
@@ -55,5 +56,17 @@ class TweetCollector
         end
       end
     end
+  end
+
+  # For first time configuration
+  def self.setup_pit
+    Pit.get("candy-bottle", require: {
+              twitter: {
+                consumer_key: 'consumer_key',
+                consumer_secret: 'consumer_secret',
+                access_token: 'access_token',
+                access_token_secret: 'access_token_secret' }
+            })
+    Pit.get("im-kayac", require: { user: 'user', password: 'pass' })
   end
 end
