@@ -1,0 +1,23 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: candy_bottle
+  pool: 5
+  username: igarashi
+  password: password
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: candy_bottle
+  pool: 5
+  username: igarashi
+  password: password
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: candy_bottle_test
+  pool: 5
+  username: igarashi
+  password: password

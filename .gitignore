@@ -16,3 +16,4 @@
 /tmp
 
 /db/seeds.igaiga.rb
+/config/database.yml
