@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 20140105020425) do
   end
 
   create_table "tweets", force: true do |t|
-    t.string "text"
-    t.string "user_account"
-    t.string "user_name"
-    t.string "user_id"
-    t.string "status_id"
+    t.string   "text"
+    t.string   "user_account"
+    t.string   "user_name"
+    t.string   "user_id"
+    t.string   "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "tweets", ["status_id"], name: "index_tweets_on_status_id", using: :btree

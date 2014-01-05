@@ -8,6 +8,8 @@ class CreateTweets < ActiveRecord::Migration
       t.index  :user_id
       t.string :status_id
       t.index  :status_id
+
+      t.timestamps
     end
   end
 end
