@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105020425) do
+ActiveRecord::Schema.define(version: 20140208100752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20140105020425) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "timeline_match_tweets", force: true do |t|
+    t.string   "text"
+    t.string   "user_account"
+    t.string   "user_name"
+    t.string   "user_id"
+    t.string   "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "timeline_match_tweets", ["status_id"], name: "index_timeline_match_tweets_on_status_id", using: :btree
+  add_index "timeline_match_tweets", ["user_id"], name: "index_timeline_match_tweets_on_user_id", using: :btree
 
   create_table "tweets", force: true do |t|
     t.string   "text"
