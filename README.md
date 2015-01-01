@@ -1,6 +1,6 @@
 ## version
 
-* Ruby 2.1.x
+* Ruby 2.2.x
 * Rails 4.0.2
 
 ## setup
@@ -12,7 +12,7 @@
 * $ RAILS_ENV=production bundle exec rake db:seed
 
 Input Pit settings when you run first time.
-* $ RAILS_ENV=production ber runner "TweetCollector.setup_pit"
+* $ RAILS_ENV=production bundle exec rails runner "TweetCollector.setup_pit"
 
 ## Run
 
