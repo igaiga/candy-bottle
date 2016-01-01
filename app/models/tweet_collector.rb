@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# $ RAILS_ENV=production ber runner "TweetCollector.setup_pit" # first time only
-# $ RAILS_ENV=production ber runner "TweetCollector.bring"
+# $ RAILS_ENV=production bundle exec rails runner "TweetCollector.setup_pit" # first time only
+# $ RAILS_ENV=production bundle exec rails runner "TweetCollector.bring"
 class TweetCollector
   attr_reader :stream
   def initialize
