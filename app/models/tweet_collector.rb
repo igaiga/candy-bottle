@@ -36,8 +36,8 @@ class TweetCollector
     loop do
       begin
         @collector.bring
-#      rescue StandardError => e # for development
-      rescue Exception => e # for production (Ctrl-cも効かなくなる)
+      rescue StandardError => e # for development
+#      rescue Exception => e # for production (Ctrl-cも効かなくなる)
         # TODO ログに日時を出したい
         Rails.logger.error "Exception occur in TweetCollector: #{e}"
       end
@@ -49,7 +49,6 @@ class TweetCollector
       case obj
       when Twitter::Tweet
         Tweet.create(user_account: obj.user.screen_name, user_name: obj.user.name, user_id: obj.user.id, text: obj.text, status_id: obj.id)
-
         if @targets.any? { |word| obj.text.include?(word) }
           TimelineMatchTweet.create(user_account: obj.user.screen_name, user_name: obj.user.name, user_id: obj.user.id, text: obj.text, status_id: obj.id)
           @pusher.push "@#{obj.user.screen_name} (#{obj.user.name}) : #{obj.text} : #{obj.id}"
