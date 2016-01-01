@@ -48,13 +48,13 @@ class TweetCollector
     @stream.user do |obj|
       case obj
       when Twitter::Tweet
-        Tweet.create(user_account: obj.user.user_name, user_name: obj.user.name, user_id: obj.user.id, text: obj.text, status_id: obj.id)
+        Tweet.create(user_account: obj.user.screen_name, user_name: obj.user.name, user_id: obj.user.id, text: obj.text, status_id: obj.id)
 
         if @targets.any? { |word| obj.text.include?(word) }
-          TimelineMatchTweet.create(user_account: obj.user.user_name, user_name: obj.user.name, user_id: obj.user.id, text: obj.text, status_id: obj.id)
-          @pusher.push "@#{obj.user.user_name} (#{obj.user.name}) : #{obj.text} : #{obj.id}"
+          TimelineMatchTweet.create(user_account: obj.user.screen_name, user_name: obj.user.name, user_id: obj.user.id, text: obj.text, status_id: obj.id)
+          @pusher.push "@#{obj.user.screen_name} (#{obj.user.name}) : #{obj.text} : #{obj.id}"
           # TODO : twitter へリンク貼るとか、twitterアプリへ飛ばすとか、連携を考えたい
-          p "@#{obj.user.user_name} (#{obj.user.name}) : #{obj.text} : #{obj.id} : #{obj.user.id}"
+          p "@#{obj.user.screen_name} (#{obj.user.name}) : #{obj.text} : #{obj.id} : #{obj.user.id}"
         end
       end
     end
