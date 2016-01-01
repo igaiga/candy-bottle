@@ -36,7 +36,8 @@ class TweetCollector
     loop do
       begin
         @collector.bring
-      rescue Exception => e
+#      rescue StandardError => e # for development
+      rescue Exception => e # for production (Ctrl-cも効かなくなる)
         # TODO ログに日時を出したい
         Rails.logger.error "Exception occur in TweetCollector: #{e}"
       end
