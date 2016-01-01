@@ -1,7 +1,7 @@
 ## version
 
-* Ruby 2.2.x
-* Rails 4.0.2
+* Ruby 2.3.x
+* Rails 4.2.5
 
 ## setup
 
